@@ -3,6 +3,8 @@ import useStore from '../../hooks/useStore';
 import { fetchToDos, updateToDos } from '../../store/actions';
 import './style.css';
 
+import ToDoItem from '../ToDoItem';
+
 export default function ToDoList() {
   const [state, dispatch] = useStore();
   const { todos } = state;
@@ -44,31 +46,11 @@ export default function ToDoList() {
             key={`${item.userId}-${item.title}`}
             className={item.completed ? 'completed' : ''}
           >
-            <div>
-              <span
-                onClick={() => {
-                  toggleToDo(item.id);
-                }}
-                className="todo-text"
-              >
-                <input
-                  type="checkbox"
-                  checked={item.completed}
-                  onChange={() => {
-                    toggleToDo(item.id);
-                  }}
-                />
-                {item.title}
-              </span>
-              <span
-                className="delete"
-                onClick={() => {
-                  deleteToDo(item.id);
-                }}
-              >
-                Delete
-              </span>
-            </div>
+            <ToDoItem
+              item={item}
+              toggleHandler={toggleToDo}
+              deleteHandler={deleteToDo}
+            />
           </li>
         ))}
     </ol>
