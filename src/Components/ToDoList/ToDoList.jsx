@@ -6,6 +6,7 @@ import './style.css';
 export default function ToDoList() {
   const [state, dispatch] = useStore();
   const { todos } = state;
+  console.log(state, 'State');
 
   useEffect(() => {
     fetchToDos(dispatch);
