@@ -3,6 +3,7 @@ import StoreContext from '../store';
 
 const useStore = () => {
   const { state, dispatch } = useContext(StoreContext);
+  console.log('hhhh');
   return [state, dispatch];
 };
 
