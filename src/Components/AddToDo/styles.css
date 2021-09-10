@@ -4,3 +4,9 @@
   align-items: center;
   margin: 0 0 3em;
 }
+
+.add-to-do {
+  display: flex;
+  grid-gap: 1em;
+  align-items: center;
+}
