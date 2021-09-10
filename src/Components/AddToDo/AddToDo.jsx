@@ -7,28 +7,39 @@ const AddToDo = () => {
   const [state, dispatch] = useStore();
   const [value, setValue] = useState('');
 
-  const addToDo = useCallback(() => {
-    setValue('');
-    addToDoItem(dispatch, {
-      userId: 1,
-      id: state.todos.length + 1,
-      title: value,
-      completed: false
-    });
-  }, [value]);
+  const addToDo = useCallback(
+    e => {
+      e.preventDefault();
+      setValue('');
+      if (value) {
+        addToDoItem(dispatch, {
+          userId: state.todos.length + 1,
+          id: state.todos.length + 1,
+          title: value,
+          completed: false
+        });
+      }
+    },
+    [value]
+  );
 
   return (
     <div className="todo-header">
       <h2>ToDo App</h2>
-      <div className="add-to-do">
-        <textarea
-          type="search"
-          placeholder="add todo item"
-          value={value}
-          onChange={e => setValue(e.target.value)}
-        />
-        <button onClick={addToDo}>Save</button>
-      </div>
+      <form method="post" onSubmit={addToDo}>
+        <div className="add-to-do">
+          <textarea
+            type="search"
+            placeholder="add todo item"
+            value={value}
+            onChange={e => setValue(e.target.value)}
+            required
+            rows="4"
+            cols="30"
+          />
+          <button type="submit">Save</button>
+        </div>
+      </form>
     </div>
   );
 };

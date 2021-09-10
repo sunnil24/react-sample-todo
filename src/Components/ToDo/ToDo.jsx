@@ -1,17 +1,14 @@
-import React, { useState, useReducer } from 'react';
+import React from 'react';
 import ToDoList from '../ToDoList';
 import AddToDo from '../AddToDo';
-import todoReducer from '../../store/reducers';
-import Store, { initialState } from '../../store';
+import { StoreProvider } from '../../store';
 
 const ToDo = () => {
-  const [state, dispatch] = useReducer(todoReducer, initialState);
-
   return (
-    <Store.Provider value={{ state, dispatch }}>
+    <StoreProvider>
       <AddToDo />
       <ToDoList />
-    </Store.Provider>
+    </StoreProvider>
   );
 };
 
